@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.Date;
+
 @Entity
 @Data
 @NoArgsConstructor
@@ -18,4 +20,5 @@ public class Comment {
     private String content;
     private Long user_id;
     private Long post_id;
+    private Date datePub;
 }

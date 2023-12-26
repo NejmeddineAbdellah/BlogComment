@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
@@ -20,6 +21,8 @@ public class CommentService {
     }
 
     public void save(Comment comment) {
+
+        comment.setDatePub(new Date());
         commentRepository.save(comment);
     }
 
