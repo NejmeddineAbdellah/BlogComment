@@ -1,6 +1,6 @@
 package com.example.blogcomment.controller;
 
-import com.example.blogcomment.Service.CommentService;
+import com.example.blogcomment.service.CommentService;
 import com.example.blogcomment.entities.Comment;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -8,13 +8,16 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@CrossOrigin(origins = "*")
+@CrossOrigin(origins = "http://localhost:3000/*")
 @RequestMapping("/comment")
 public class CommentController {
 
+	private final CommentService commentService;
+
     @Autowired
-    CommentService commentService;
-    //
+    public CommentController(CommentService commentService) {
+        this.commentService = commentService;
+    }
 
     @GetMapping("/all")
     public List<Comment> findAll() {

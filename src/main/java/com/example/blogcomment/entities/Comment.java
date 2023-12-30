@@ -1,24 +1,48 @@
 package com.example.blogcomment.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.util.Date;
 
 @Entity
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class Comment {
 
 
-    @Id
+    public int getId() {
+		return id;
+	}
+	public void setId(int id) {
+		this.id = id;
+	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+	public Long getUserId() {
+		return userId;
+	}
+	public void setUserId(Long userId) {
+		this.userId = userId;
+	}
+	public Long getPostId() {
+		return postId;
+	}
+	public void setPostId(Long postId) {
+		this.postId = postId;
+	}
+	public Date getDatePub() {
+		return datePub;
+	}
+	public void setDatePub(Date datePub) {
+		this.datePub = datePub;
+	}
+	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String content;
-    private Long user_id;
-    private Long post_id;
+    private Long userId;
+    private Long postId;
     private Date datePub;
 }
