@@ -1,9 +1,8 @@
-package com.example.blogcomment.Service;
+package com.example.blogcomment.service;
 
 import com.example.blogcomment.entities.Comment;
 import com.example.blogcomment.repos.CommentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -12,8 +11,12 @@ import java.util.Optional;
 @Service
 public class CommentService {
 
+	private final CommentRepository commentRepository;
+
     @Autowired
-    CommentRepository commentRepository;
+    public CommentService(CommentRepository commentRepository) {
+        this.commentRepository = commentRepository;
+    }
 
     public List<Comment> findAll() {
         return commentRepository.findAll();
@@ -24,8 +27,10 @@ public class CommentService {
     }
 
     public Comment findById(Long id) {
-        return commentRepository.findById(id).get();
+        Optional<Comment> optionalComment = commentRepository.findById(id);
+        return optionalComment.orElse(null); // or throw an exception if needed
     }
+
 
     public void deleteById(Long aLong) {
         commentRepository.deleteById(aLong);
